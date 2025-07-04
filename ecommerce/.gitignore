@@ -1,0 +1,16 @@
+# Maven build
+target/
+
+# Logs
+*.log
+
+# IDE settings
+.idea/
+*.iml
+.vscode/
+
+# Java classes
+*.class
+
+# Environment files
+.env

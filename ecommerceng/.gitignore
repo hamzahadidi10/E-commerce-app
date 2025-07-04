@@ -1,0 +1,13 @@
+# Node modules
+node_modules/
+
+# Angular build
+dist/
+.angular/
+
+# IDE
+.vscode/
+.idea/
+
+# Environment files
+.env
