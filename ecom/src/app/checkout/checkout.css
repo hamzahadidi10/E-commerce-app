@@ -1,0 +1,141 @@
+/* Container */
+.success-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  padding: 2rem;
+  background: #f8f9fa;
+  animation: fadeIn 0.8s ease forwards;
+}
+
+/* Card */
+.success-card {
+  background: white;
+  padding: 3rem 4rem;
+  border-radius: 20px;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 500px;
+  width: 100%;
+  animation: float 6s ease-in-out infinite;
+}
+
+/* SVG icon */
+.icon-container {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 1.5rem;
+}
+
+.checkmark {
+  width: 100%;
+  height: 100%;
+  stroke: #27ae60;
+  stroke-width: 4;
+  stroke-miterlimit: 10;
+  animation: scalePulse 1.5s ease forwards;
+}
+
+.checkmark__circle {
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.checkmark__check {
+  transform-origin: 50% 50%;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: stroke 0.3s 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+/* Headings and text */
+.success-card h1 {
+  color: #2c3e50;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  font-size: 2rem;
+}
+
+.success-card p {
+  color: #7f8c8d;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+/* Buttons */
+.btn-group {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  border-radius: 50px;
+  padding: 0.75rem 2.5rem;
+  font-weight: 700;
+  font-size: 1.1rem;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
+}
+
+.btn-primary {
+  background-color: #27ae60;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #2ecc71;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(39, 174, 96, 0.5);
+}
+
+/* Animations */
+@keyframes stroke {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes scalePulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3); }
+  50% { transform: scale(1.1); box-shadow: 0 8px 25px rgba(39, 174, 96, 0.5); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* ✅ Responsive styles */
+@media (max-width: 576px) {
+  .success-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .success-card h1 {
+    font-size: 1.5rem;
+  }
+
+  .success-card p {
+    font-size: 1rem;
+  }
+
+  .icon-container {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 1rem;
+  }
+
+  .btn {
+    font-size: 1rem;
+    padding: 0.6rem 2rem;
+  }
+}

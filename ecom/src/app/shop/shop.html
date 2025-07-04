@@ -1,0 +1,271 @@
+<div class="shop-page-container">
+<!-- Navbar with search form -->
+<nav class="navbar custom-navbar">
+  <div class="container-fluid">
+    <a class="navbar-brand"></a>
+    <div class="d-flex" role="search">
+      <!-- Wrap input in form with formGroup -->
+      <form [formGroup]="filterForm">
+        <input 
+          class="form-control me-2" 
+          type="search" 
+          placeholder="Search" 
+          aria-label="Search"
+          formControlName="search">
+      </form>
+      <button class="btn btn-outline-success" style="margin-right: 20px;" type="button">Search</button>
+      <button *ngIf="activeUser?.role === 'admin'" class="btn btn-outline-success" type="button" data-bs-toggle="modal" data-bs-target="#addProductModal">
+        Add Product
+      </button>
+    </div>
+  </div>
+</nav>
+<br>
+<!-- Filters section -->
+<div class="container-fluid no-padding">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="grid search">
+        <div class="grid-body">
+          <div class="row">
+            <!-- Filters column -->
+            <div class="col-md-3">
+              <h2 class="grid-title"><i class="fa fa-filter"></i> Filters</h2>
+              <hr>
+
+              <!-- Main form group for all filters -->
+              <form [formGroup]="filterForm">
+                <!-- Categories group -->
+                <div formGroupName="categories">
+                  <h4>By category:</h4>
+                  <div class="checkbox" *ngFor="let category of categories">
+                    <label>
+                      <input type="checkbox" [formControlName]="category"> {{ category }}
+                    </label>
+                  </div>
+                </div>
+
+                <div class="padding"></div>
+                <br>
+                
+
+                <h4>By price:</h4>
+                <div class="mb-3">
+                  <label for="maxPrice" class="form-label">Maximum Price: ${{ filterForm.get('maxPrice')?.value }}</label>
+                  <input
+                    type="range"
+                    class="form-range"
+                    id="maxPrice"
+                    formControlName="maxPrice"
+                    [min]="0"
+                    [max]="maxPrice"
+                    step="1"
+                  />
+                </div>
+              </form>
+            </div>
+
+            <!-- Results column -->
+            <div class="col-md-9">
+              <h2><i class="fa fa-file-o"></i> Search Result</h2>
+              <hr>
+              <div class="table-responsive">
+                <table class="table table-hover">
+                  <tbody>
+                    <tr>
+                      <td colspan="100%">
+                        <app-items-list></app-items-list>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <div class="add-product-page d-flex justify-content-center align-items-center">
+  <div class="card shadow-lg p-4 w-100" style="max-width: 600px;">
+    <h3 class="mb-4 text-center text-secondary">Add New Product</h3>
+    <form #addProductForm="ngForm" (ngSubmit)="onSubmit(addProductForm)" novalidate>
+
+  <!-- Product Name -->
+  <div class="mb-3">
+    <label for="productName" class="form-label">Product Name</label>
+    <input
+      type="text"
+      id="productName"
+      [(ngModel)]="newProduct.productName"
+      name="productName"
+      class="form-control"
+      required
+      minlength="3"
+      #productName="ngModel"
+    />
+    <div *ngIf="productName.invalid && (productName.dirty || productName.touched)" class="text-danger mt-1">
+      <small *ngIf="productName.errors?.['required']">Product Name is required.</small>
+      <small *ngIf="productName.errors?.['minlength']">Minimum 3 characters required.</small>
+    </div>
+  </div>
+
+  <!-- Category -->
+  <div class="mb-3">
+    <label for="category" class="form-label">Category</label>
+    <input
+      type="text"
+      id="category"
+      [(ngModel)]="newProduct.category"
+      name="category"
+      class="form-control"
+      required
+      #category="ngModel"
+    />
+    <div *ngIf="category.invalid && (category.dirty || category.touched)" class="text-danger mt-1">
+      <small *ngIf="category.errors?.['required']">Category is required.</small>
+    </div>
+  </div>
+
+  <!-- Description -->
+  <div class="mb-3">
+    <label for="productDescription" class="form-label">Description</label>
+    <textarea
+      id="productDescription"
+      [(ngModel)]="newProduct.description"
+      name="description"
+      class="form-control"
+      rows="3"
+      required
+      minlength="10"
+      #description="ngModel"
+    ></textarea>
+    <div *ngIf="description.invalid && (description.dirty || description.touched)" class="text-danger mt-1">
+      <small *ngIf="description.errors?.['required']">Description is required.</small>
+      <small *ngIf="description.errors?.['minlength']">Minimum 10 characters required.</small>
+    </div>
+  </div>
+
+  <!-- Price -->
+  <div class="mb-3">
+    <label for="productPrice" class="form-label">Price ($)</label>
+    <input
+      type="number"
+      id="productPrice"
+      [(ngModel)]="newProduct.price"
+      name="price"
+      class="form-control"
+      required
+      min="0.01"
+      step="0.01"
+      #price="ngModel"
+    />
+    <div *ngIf="price.invalid && (price.dirty || price.touched)" class="text-danger mt-1">
+      <small *ngIf="price.errors?.['required']">Price is required.</small>
+      <small *ngIf="price.errors?.['min']">Price must be greater than 0.</small>
+    </div>
+  </div>
+
+  <div class="mb-3">
+  <label for="productImageUrl" class="form-label">Product Image URL</label>
+  <div class="input-group">
+    <input
+      type="text"
+      id="productImageUrl"
+      class="form-control  me-2"
+      [(ngModel)]="newProduct.productImageUrl"
+      placeholder="https://example.com/image.jpg"
+      required
+      name="productImageUrl"
+    />
+    <button 
+      class="btn btn-outline-secondary ms-2" 
+      type="button"
+      (click)="previewImage()"
+    >
+      Preview
+    </button>
+  </div>
+  
+  <!-- Image Preview -->
+  <div *ngIf="imagePreview" class="mt-2">
+    <img [src]="imagePreview" class="img-thumbnail" style="max-height: 200px;">
+    <div *ngIf="!isImageValid" class="text-danger mt-1">
+      <small>Invalid image URL</small>
+    </div>
+  </div>
+  
+  <div *ngIf="fileError" class="text-danger mt-1">
+    <small>Product image URL is required.</small>
+  </div>
+</div>
+
+
+  <!-- Stock -->
+  <div class="mb-3">
+    <label for="stock" class="form-label">Stock</label>
+    <input
+      type="number"
+      id="stock"
+      [(ngModel)]="newProduct.stock"
+      name="stock"
+      class="form-control"
+      required
+      min="0"
+      #stock="ngModel"
+    />
+    <div *ngIf="stock.invalid && (stock.dirty || stock.touched)" class="text-danger mt-1">
+      <small *ngIf="stock.errors?.['required']">Stock is required.</small>
+      <small *ngIf="stock.errors?.['min']">Stock cannot be negative.</small>
+    </div>
+  </div>
+
+  <!-- Status -->
+  <div class="mb-3">
+    <label for="status" class="form-label">Status</label>
+    <input
+      type="text"
+      id="status"
+      [(ngModel)]="newProduct.status"
+      name="status"
+      class="form-control"
+      #status="ngModel"
+    />
+    <div *ngIf="status.invalid && (status.dirty || status.touched)" class="text-danger mt-1">
+      <small *ngIf="status.errors?.['required']">Status is required.</small>
+    </div>
+  </div>
+
+  <div class="d-grid">
+    <button class="btn btn-primary" type="submit" [disabled]="addProductForm.invalid">
+      <i class="fa fa-plus-circle me-2"></i> Add Product
+    </button>
+  </div>
+</form>
+
+  </div>
+</div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>

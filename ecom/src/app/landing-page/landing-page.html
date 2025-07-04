@@ -1,0 +1,79 @@
+<div class="page-container">
+  <!-- Slider -->
+  <app-image-slider></app-image-slider>
+
+  <!-- CTA Banner (Visible only if not logged in) -->
+  <div *ngIf="activeUser === null" class="cta-banner flex-wrap">
+    <div class="cta-content">
+      <h2>Unlock Exclusive Benefits!</h2>
+      <p>Sign up now to enjoy special discounts, early access to sales, and personalized recommendations.</p>
+      <div class="cta-buttons">
+        <a routerLink="/sign-up" class="btn btn-secondary">Join Now</a>
+        <a routerLink="/log-in" class="btn btn-outline">Already a member? Sign In</a>
+      </div>
+    </div>
+    <div class="cta-image">
+      <img src="https://cdni.iconscout.com/illustration/premium/thumb/call-to-action-illustration-download-in-svg-png-gif-file-formats--button-click-ui-brand-promotion-pack-business-illustrations-11172136.png?f=webp" alt="Special offers" />
+    </div>
+  </div>
+
+  <!-- Featured Products Section -->
+  <section class="featured-section">
+    <div class="section-header text-center">
+      <h2>Our Featured Products</h2>
+      <p>Discover the best deals on our most popular items</p>
+    </div>
+
+    <div class="products-container">
+      <ng-container *ngIf="products$ | async as products">
+        <ng-container *ngFor="let product of products">
+          <div *ngIf="product.status !== ''" class="product-card">
+            <div class="card-image-container">
+              <img [src]="product.productImageUrl" alt="{{ product.productName }}" class="card-img" />
+              <div class="card-badge">{{ product.status }}</div>
+            </div>
+
+            <div class="card-body">
+              <h5 class="card-title">{{ product.productName }}</h5>
+              <div class="card-details">
+                <div class="price">{{ product.price }} DT</div>
+                <div class="stock" [ngClass]="{'available': product.stock > 0, 'unavailable': product.stock === 0}">
+                  {{ product.stock > 0 ? 'In Stock' : 'Out Of Stock!' }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+    </div>
+  </section>
+
+  <!-- Membership Benefits Section -->
+  <section class="benefits-section">
+    <h2>Why Become a Member?</h2>
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <div class="benefit-icon"><i class="fas fa-percentage"></i></div>
+        <h3>Exclusive Discounts</h3>
+        <p>Get access to members-only sales and special offers</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon"><i class="fas fa-shipping-fast"></i></div>
+        <h3>Faster Checkout</h3>
+        <p>Save your details for quick and easy purchases</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon"><i class="fas fa-heart"></i></div>
+        <h3>Wishlist</h3>
+        <p>Save your favorite items for later</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon"><i class="fas fa-bell"></i></div>
+        <h3>Stock Alerts</h3>
+        <p>Be notified when out-of-stock items are available</p>
+      </div>
+    </div>
+  </section>
+
+  <router-outlet></router-outlet>
+</div>

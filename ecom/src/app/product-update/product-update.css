@@ -1,0 +1,133 @@
+/* product-update.css */
+.card {
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  border-radius: 1rem;
+  border-left: 5px solid #28a745;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+input.form-control {
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+  /* No transition */
+}
+
+input.form-control:focus {
+  border-color: #28a745 !important;
+  box-shadow: 0 0 8px 2px #28a745aa !important;
+  outline: none;
+  /* No transition */
+}
+
+button {
+  border-radius: 0.5rem;
+}
+
+/* Buttons */
+.btn-success {
+  background-color: #28a745;
+  border: none;
+  color: #fff;
+
+  /* Keep pulse animation on buttons only */
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-name: pulse;
+  cursor: pointer;
+
+  /* No transition on buttons */
+  transition: none;
+}
+
+.btn-success:hover {
+  animation-play-state: paused;
+  background-color: #1e7e34;
+  box-shadow: 0 0 12px 4px #28a745bb;
+}
+
+.btn-success:disabled {
+  background-color: #94d3a2;
+  cursor: not-allowed;
+}
+
+.btn-outline-dark {
+  border-color: #000;
+  color: #000;
+  /* No transition */
+  transition: none;
+}
+
+.btn-outline-dark:hover {
+  background-color: #28a745;
+  color: #fff;
+  border-color: #28a745;
+}
+
+/* Headings */
+h2 {
+  font-weight: bold;
+  color: #28a745 !important; /* Force green */
+  text-shadow: 0 0 5px #28a745aa;
+}
+
+/* Remove all other animations */
+.animate__fadeIn {
+  animation: none !important;
+}
+
+/* Remove keyframes for fadeIn */
+@keyframes fadeIn {
+  /* empty */
+}
+
+/* Keep pulse keyframes for buttons */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+/* Existing styles omitted for brevity - just add this below your current CSS */
+
+/* Responsive adjustments */
+@media (max-width: 767.98px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .card {
+    padding: 1.5rem !important; /* smaller padding on mobile */
+    max-width: 100% !important;
+    border-left-width: 3px !important; /* thinner border on left */
+  }
+
+  /* Stack form inputs full width */
+  .row.g-3 > div {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  /* Make buttons stack vertically on small screens */
+  .d-flex.justify-content-between.align-items-center.mt-5 {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  /* Center title and description with some margin */
+  h2, p.text-muted {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+}

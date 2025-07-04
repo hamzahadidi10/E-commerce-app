@@ -1,0 +1,46 @@
+<div id="carouselExampleDark" class="carousel carousel-dark slide shadow-lg rounded" data-bs-ride="carousel" data-bs-interval="3000">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+
+  <div class="carousel-inner rounded">
+    <!-- Slide 1 -->
+    <div class="carousel-item active" data-bs-interval="6000">
+      <img src="https://previews.123rf.com/images/dimasic50/dimasic501605/dimasic50160500356/57242134-business-startup-via-web-services-e-commerce-concept-computer-making-money-piggy-bank-time.jpg" class="d-block w-100 rounded" alt="Welcome image">
+      <div class="carousel-caption d-none d-md-block bg-light bg-opacity-50 p-4 rounded animate__animated animate__fadeInUp">
+        <h3 class="text-dark" *ngIf="activeUser!=null">Welcome to our Online Store {{activeUser.username}}!</h3>
+        <p class="text-dark fst-italic">Find everything you need, all in one place.</p>
+      </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="carousel-item" data-bs-interval="3000">
+      <img src="https://www.netscribes.com/wp-content/uploads/2025/02/Banner-resize_Green-e-commerce-for-online-shopping.webp" class="d-block w-100 rounded" alt="Second slide">
+      <div class="carousel-caption d-none d-md-block bg-light bg-opacity-50 p-4 rounded animate__animated animate__fadeInUp">
+        <h3 class="text-dark">Discover the Latest Trends</h3>
+        <p class="text-dark fst-italic">Stylish selections just a click away.</p>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="carousel-item" data-bs-interval="3000">
+      <img src="https://console.kr-asia.com/wp-content/uploads/2021/12/Gojek-3.jpg" class="d-block w-100 rounded" alt="Third slide">
+      <div class="carousel-caption d-none d-md-block bg-light bg-opacity-50 p-4 rounded animate__animated animate__fadeInUp">
+        <h3 class="text-dark">Fast & Secure Delivery</h3>
+        <p class="text-dark fst-italic">From our store to your door.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation arrows -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon bg-dark rounded-circle p-2" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+    <span class="carousel-control-next-icon bg-dark rounded-circle p-2" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>

@@ -1,0 +1,109 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+<div class="container my-5">
+  <div
+    class="card shadow-lg rounded-4 p-4"
+    style="background-color: #ffffff; color: #000000; border-left: 5px solid #28a745;"
+  >
+    <h2 class="mb-4 text-center" style="color: #28a745;">Update Product</h2>
+    <p class="text-muted text-center">Only fill in fields you wish to update</p>
+
+    <form (ngSubmit)="updateProduct()">
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label for="productName" class="form-label">Product Name</label>
+          <input
+            type="text"
+            id="productName"
+            class="form-control"
+            [(ngModel)]="updatedProduct.productName"
+            name="productName"
+          />
+        </div>
+
+        <div class="col-md-6">
+          <label for="category" class="form-label">Category</label>
+          <input
+            type="text"
+            id="category"
+            class="form-control"
+            [(ngModel)]="updatedProduct.category"
+            name="category"
+          />
+        </div>
+
+        <div class="col-12">
+          <label for="description" class="form-label">Description</label>
+          <input
+            type="text"
+            id="description"
+            class="form-control"
+            [(ngModel)]="updatedProduct.description"
+            name="description"
+          />
+        </div>
+
+        <div class="col-md-6">
+          <label for="price" class="form-label">Price (DT)</label>
+          <input
+            type="number"
+            id="price"
+            class="form-control"
+            [(ngModel)]="updatedProduct.price"
+            name="price"
+          />
+        </div>
+
+        <div class="col-md-6">
+          <label for="productImageUrl" class="form-label">Image URL</label>
+          <input
+            type="text"
+            id="productImageUrl"
+            class="form-control"
+            [(ngModel)]="updatedProduct.productImageUrl"
+            name="productImageUrl"
+          />
+        </div>
+
+        <div class="col-md-6">
+          <label for="stock" class="form-label">Stock</label>
+          <input
+            type="number"
+            id="stock"
+            class="form-control"
+            [(ngModel)]="updatedProduct.stock"
+            name="stock"
+          />
+        </div>
+
+        <div class="col-md-6">
+          <label for="status" class="form-label">Status</label>
+          <input
+            type="text"
+            id="status"
+            class="form-control"
+            [(ngModel)]="updatedProduct.status"
+            name="status"
+          />
+        </div>
+      </div>
+
+      <div *ngIf="errorMessage" class="alert alert-danger mt-4 text-center">
+        {{ errorMessage }}
+      </div>
+
+      <div class="d-flex justify-content-between align-items-center mt-5">
+        <a routerLink="/shop" class="btn btn-outline-dark">
+          <i class="bi bi-arrow-left"></i> Back to Shop
+        </a>
+        <button
+          type="submit"
+          class="btn btn-success px-4 save-btn"
+          [disabled]="isLoading"
+        >
+          Save Changes
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

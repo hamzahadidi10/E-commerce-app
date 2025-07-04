@@ -1,0 +1,310 @@
+/* ===== Base Reset & Theme ===== */
+body {
+  background-color: #f8f9fa;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===== Navbar ===== */
+.custom-navbar {
+  background-color: white;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease;
+}
+
+.custom-navbar:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: #2c3e50;
+  display: flex;
+  align-items: center;
+  transition: color 0.3s ease;
+}
+
+.navbar-brand:hover {
+  color: #27ae60;
+}
+
+/* Remove Emoji Content */
+.navbar-brand::before {
+  content: none !important;
+}
+
+/* Search Form */
+.custom-navbar .d-flex {
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.custom-navbar .form-control {
+  background-color: #f8f9fa;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.85rem;
+  min-width: 200px;
+  transition: all 0.3s ease;
+}
+
+.custom-navbar .form-control:focus {
+  border-color: #27ae60;
+  background-color: white;
+  box-shadow: 0 0 0 2px rgba(39, 174, 96, 0.2);
+}
+
+.custom-navbar .form-control::placeholder {
+  color: #95a5a6;
+}
+
+/* Button */
+.custom-navbar .btn-outline-success {
+  border: 1.5px solid #27ae60;
+  color: #27ae60;
+  font-weight: 600;
+  border-radius: 6px;
+  padding: 0.4rem 1.1rem;
+  transition: all 0.3s ease;
+  font-size: 0.85rem;
+}
+
+.custom-navbar .btn-outline-success:hover {
+  background-color: #27ae60;
+  color: white;
+  box-shadow: 0 3px 10px rgba(39, 174, 96, 0.2);
+}
+
+/* Remove "+" or emoji */
+.custom-navbar .btn-outline-success[data-bs-target="#addProductModal"]::before {
+  content: none !important;
+}
+
+/* ===== Product Table ===== */
+.table-hover tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+/* ===== Form Controls ===== */
+.form-label {
+  color: #2c3e50;
+  font-weight: 500;
+}
+
+.form-control {
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: #27ae60;
+  box-shadow: 0 0 0 3px rgba(39, 174, 96, 0.2);
+}
+
+/* Primary Button */
+.btn-primary {
+  background: #27ae60;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: #2ecc71;
+  box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
+}
+
+/* ===== Modal ===== */
+.modal-content {
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* ===== Responsive Adjustments ===== */
+@media (max-width: 992px) {
+  .custom-navbar {
+    padding: 0.5rem 0.8rem;
+  }
+
+  .custom-navbar .form-control {
+    min-width: 180px;
+  }
+}
+
+@media (max-width: 768px) {
+  .custom-navbar .d-flex {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .custom-navbar .form-control {
+    width: 100%;
+    min-width: auto;
+  }
+
+  .custom-navbar .btn-outline-success {
+    width: 100%;
+    text-align: center;
+  }
+}
+/* ===== Navbar ===== */
+.custom-navbar {
+  background-color: #f8f9fa; /* Match the page background */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.custom-navbar:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07);
+}
+
+.navbar-brand {
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: #2c3e50;
+  display: flex;
+  align-items: center;
+  transition: color 0.3s ease;
+}
+
+.navbar-brand:hover {
+  color: #27ae60;
+}
+
+/* Search Form */
+.custom-navbar .d-flex {
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.custom-navbar .form-control {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.85rem;
+  min-width: 200px;
+  transition: all 0.3s ease;
+}
+
+.custom-navbar .form-control:focus {
+  border-color: #27ae60;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 2px rgba(39, 174, 96, 0.2);
+}
+
+/* Button */
+.custom-navbar .btn-outline-success {
+  border: 1.5px solid #27ae60;
+  color: #27ae60;
+  font-weight: 600;
+  border-radius: 6px;
+  padding: 0.4rem 1.1rem;
+  transition: all 0.3s ease;
+  font-size: 0.85rem;
+}
+
+.custom-navbar .btn-outline-success:hover {
+  background-color: #27ae60;
+  color: white;
+  box-shadow: 0 3px 10px rgba(39, 174, 96, 0.2);
+}
+/* Responsive adjustments for smaller screens */
+@media (max-width: 991.98px) {
+  /* Navbar */
+  .custom-navbar .d-flex {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .custom-navbar .form-control,
+  .custom-navbar .btn-outline-success {
+    width: 100%;
+    min-width: auto;
+  }
+}
+
+/* For tablets and phones */
+@media (max-width: 767.98px) {
+  /* Filters and results stacked vertically */
+  .container-fluid.no-padding .row {
+    flex-direction: column;
+  }
+
+  .container-fluid.no-padding .col-md-3,
+  .container-fluid.no-padding .col-md-9 {
+    max-width: 100%;
+    flex: 0 0 100%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  /* Add spacing below filters */
+  .container-fluid.no-padding .col-md-3 {
+    margin-bottom: 20px;
+  }
+
+  /* Make checkboxes larger tap targets */
+  .checkbox label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1rem;
+  }
+
+  /* Make range input full width */
+  input.form-range {
+    width: 100%;
+  }
+
+  /* Table responsiveness */
+  .table-responsive {
+    overflow-x: auto;
+  }
+
+  /* Modal width adjustments */
+  .modal-dialog.modal-xl {
+    max-width: 95%;
+  }
+}
+
+/* Optional: improve spacing on very small screens */
+@media (max-width: 480px) {
+  .custom-navbar .form-control,
+  .custom-navbar .btn-outline-success {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+
+  /* Slightly larger clickable areas */
+  button.btn-outline-success {
+    padding: 0.6rem 1rem;
+  }
+}
+.shop-page-container {
+  background-color: #f0f9f4; /* Light green background */
+  padding: 2rem;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+/* Optional: Ensure the modal content remains white */
+.modal-content {
+  background-color: #fff;
+}
+.custom-navbar {
+  background-color: #f0f9f4 !important;
+  box-shadow: none; /* remove shadow */
+  border-bottom: 1px solid #d0e8d7; /* subtle bottom border */
+}

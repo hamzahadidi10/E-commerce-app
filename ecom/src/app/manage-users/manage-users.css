@@ -1,0 +1,263 @@
+/* ===== General Reset & Base Styles ===== */
+body {
+  background-color: #f8f9fa;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===== Navbar ===== */
+.navbar {
+  background-color: #f8f9fa !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  padding: 0.75rem 2rem;
+}
+
+.navbar-brand {
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: #2c3e50;
+}
+
+.navbar .form-control {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  width: 300px;
+  transition: all 0.3s ease;
+}
+
+.navbar .form-control:focus {
+  border-color: #27ae60;
+  box-shadow: 0 0 0 3px rgba(39, 174, 96, 0.2);
+}
+
+.navbar .btn-outline-success {
+  border: 2px solid #27ae60;
+  color: #27ae60;
+  font-weight: 500;
+  border-radius: 8px;
+  padding: 0.5rem 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.navbar .btn-outline-success:hover {
+  background-color: #27ae60;
+  color: #fff;
+  box-shadow: 0 3px 8px rgba(39, 174, 96, 0.2);
+}
+
+/* ===== Card (User Grid) ===== */
+.card {
+  border: none;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+  padding: 1rem;
+}
+
+.card img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  box-shadow: 0 0 0 2px #27ae60;
+}
+
+h5 {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+p {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* ===== User Detail List ===== */
+.list-group-item {
+  border: none;
+  background: none;
+  padding: 0.75rem 1.25rem;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.list-group-item i {
+  color: #27ae60;
+  margin-right: 8px;
+}
+
+/* ===== Action Buttons ===== */
+.btn-outline-primary,
+.btn-outline-danger {
+  border-radius: 8px;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+
+.btn-outline-primary {
+  border-color: #27ae60;
+  color: #27ae60;
+}
+
+.btn-outline-primary:hover {
+  background-color: #42c076;
+  border-color: #27ae60;
+  color: white;
+}
+
+.btn-outline-danger {
+  border-color: #dc3545;
+  color: #dc3545;
+}
+
+.btn-outline-danger:hover {
+  background-color: #dc3545;
+  color: white;
+}
+
+/* ===== Modals ===== */
+.modal-content {
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  border: none;
+}
+
+.modal-header {
+  border-bottom: 1px solid #eee;
+}
+
+.modal-footer {
+  border-top: 1px solid #eee;
+}
+
+.modal-title {
+  font-weight: 600;
+}
+
+/* ===== Edit Profile Form ===== */
+.profile-update-container {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+}
+
+.profile-header h2 {
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+}
+
+.form-section {
+  background: #f9f9f9;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 10px;
+}
+
+.section-header {
+  font-weight: 500;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.form-label {
+  font-weight: 500;
+  color: #444;
+}
+
+.form-control {
+  border-radius: 8px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-control:focus {
+  border-color: #27ae60;
+  box-shadow: 0 0 0 3px rgba(39, 174, 96, 0.2);
+}
+
+/* ===== Buttons in Modal ===== */
+.btn-primary {
+  background-color: #27ae60;
+  border: none;
+  font-weight: 500;
+  border-radius: 8px;
+  padding: 10px 20px;
+}
+
+.btn-primary:hover {
+  background-color: #2ecc71;
+}
+
+.btn-outline-secondary {
+  border-color: #6c757d;
+  color: #6c757d;
+  border-radius: 8px;
+}
+
+.btn-outline-secondary:hover {
+  background-color: #6c757d;
+  color: white;
+}
+
+/* ===== Responsive Tweaks ===== */
+@media (max-width: 768px) {
+  .navbar .form-control {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  .navbar .btn {
+    width: 100%;
+  }
+
+  .profile-update-container {
+    padding: 1rem;
+  }
+
+  .col-sm-3,
+  .col-sm-9 {
+    width: 100%;
+  }
+
+  .row {
+    flex-direction: column;
+  }
+
+  label {
+    margin-bottom: 0.5rem;
+  }
+}
+.full-container {
+  background-color: #f0f9f4;
+  padding: 1.5rem;
+  border-radius: 10px;
+}
+.navbar {
+  background-color: #f0f9f4 !important;
+}
+
+.container {
+  background-color: #f0f9f4;
+  padding: 1.5rem;
+  border-radius: 10px;
+}
+
+

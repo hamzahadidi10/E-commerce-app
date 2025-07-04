@@ -1,0 +1,260 @@
+<!-- External stylesheets -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<div class="full-container">
+<!-- Navbar -->
+<nav class="navbar bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand"></a>
+    <form class="d-flex" role="search">
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" [formControl]="searchControl" />
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+
+<br />
+
+<!-- Users Grid -->
+<div class="container">
+  <div class="row">
+    <div *ngFor="let user of filteredUsers$ | async; trackBy: trackByCin" class="col-md-6 col-xl-3 mb-4">
+      <div class="card shadow-sm rounded-lg h-100">
+        <div class="card-body d-flex">
+          <div class="me-3">
+            <a>
+              <img
+                [src]="user.imageUrl"
+                alt="Profile Image"
+                class="img-fluid rounded-circle"
+                style="width: 70px; height: 70px; object-fit: cover"
+              />
+            </a>
+          </div>
+          <div class="flex-grow-1">
+            <h5 class="mb-1">{{ user.username }}</h5>
+            <p class="mb-0 text-muted">{{ user.role }}</p>
+          </div>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <i class="fa-solid fa-id-card me-2 text-secondary"></i>CIN: {{ user.cin }}
+          </li>
+          <li class="list-group-item">
+            <i class="fa fa-envelope me-2 text-secondary"></i>Email:
+            <a href="mailto:{{ user.email }}">{{ user.email }}</a>
+          </li>
+          <li class="list-group-item">
+            <i class="fa fa-phone me-2 text-success"></i>Phone: {{ user.phone }}
+          </li>
+          <li class="list-group-item">
+            <i class="fa fa-calendar me-2 text-secondary"></i>Joining Date: {{ user.date | date:'mediumDate' }}
+          </li>
+        </ul>
+        <div class="card-body d-flex justify-content-end">
+          <button
+            class="btn btn-outline-primary btn-sm me-2"
+            (click)="openEditModal(user)"
+            title="Edit"
+          >
+            <i class="fa fa-pencil"></i>
+          </button>
+          <button
+            class="btn btn-outline-danger btn-sm"
+            (click)="openDeleteModal(user)"
+            title="Delete"
+          >
+            <i class="fa fa-times"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Modal -->
+<div
+  class="modal fade"
+  id="deleteModal"
+  tabindex="-1"
+  aria-labelledby="deleteModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="deleteModalLabel">Are you sure you want to delete this User?</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+
+      <div class="modal-body">
+        <p *ngIf="selectedUser">
+          User <strong>{{ selectedUser.username }}</strong> will be permanently removed!
+        </p>
+        <p *ngIf="selectedUser?.role === 'admin'">
+          <strong>{{ selectedUser?.username }}</strong> is an admin too.
+        </p>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-danger" (click)="onDelete()" id="closeDeleteModal">
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Modal -->
+<div
+  class="modal fade"
+  id="editModal"
+  tabindex="-1"
+  aria-labelledby="editModalLabel"
+  aria-hidden="true"
+>
+  <div
+    class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg"
+  >
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="profile-update-container">
+          <div class="profile-header">
+            <h2><i class="fas fa-user-edit me-2"></i>Update Profile</h2>
+          </div>
+
+          <form class="profile-form" #editForm="ngForm" novalidate>
+            <!-- User Info Section -->
+            <div class="form-section">
+              <div class="section-header">
+                <i class="fas fa-user-circle me-2"></i>
+                <h3>User Info</h3>
+              </div>
+
+              <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Username</label>
+                <div class="col-sm-9">
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="editUser.username"
+                    name="username"
+                    required
+                    #username="ngModel"
+                  />
+                  <div class="text-danger" *ngIf="username.invalid && username.touched">
+                    Username is required.
+                  </div>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Address</label>
+                <div class="col-sm-9">
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="editUser.city"
+                    name="address"
+                  />
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Phone</label>
+                <div class="col-sm-9">
+                  <input
+                    type="tel"
+                    class="form-control"
+                    [(ngModel)]="editUser.phone"
+                    name="phone"
+                  />
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Email</label>
+                <div class="col-sm-9">
+                  <input
+                    type="email"
+                    class="form-control"
+                    [(ngModel)]="editUser.email"
+                    name="email"
+                  />
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Role</label>
+                <div class="col-sm-9">
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="editUser.role"
+                    name="role"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- Security Section -->
+            <div class="form-section">
+              <div class="section-header">
+                <i class="fas fa-shield-alt me-2"></i>
+                <h3>Security</h3>
+              </div>
+
+              <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">New Password</label>
+                <div class="col-sm-9">
+                  <input
+                    type="password"
+                    class="form-control"
+                    [(ngModel)]="newPassword"
+                    name="newPassword"
+                  />
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Confirm Password</label>
+                <div class="col-sm-9">
+                  <input
+                    type="password"
+                    class="form-control"
+                    [(ngModel)]="confirmPassword"
+                    name="confirmPassword"
+                  />
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-outline-secondary me-2"
+          data-bs-dismiss="modal"
+          id="closeEditModal"
+        >
+          <i class="fas fa-times me-1"></i> Close
+        </button>
+        <button type="button" class="btn btn-primary" (click)="onUpdate()">
+          <i class="fas fa-check me-1"></i> Submit
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

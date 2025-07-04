@@ -1,0 +1,54 @@
+/* Carousel image settings */
+.carousel-inner img {
+  max-height: 500px;
+  object-fit: cover;
+  width: 100%;
+}
+
+/* Caption styles */
+.carousel-caption {
+  transition: all 0.8s ease-in-out;
+  padding: 1.5rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.6);
+  color: #000;
+}
+
+.carousel-caption h3 {
+  font-weight: bold;
+  font-size: 1.8rem;
+}
+
+.carousel-caption p {
+  font-size: 1.1rem;
+}
+
+/* Animate.css */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css');
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .carousel-inner img {
+    max-height: 300px;
+  }
+
+  .carousel-caption {
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.75);
+  }
+
+  .carousel-caption h3 {
+    font-size: 1.2rem;
+  }
+
+  .carousel-caption p {
+    font-size: 0.9rem;
+  }
+
+  /* Optionally hide captions on very small screens */
+  @media (max-width: 500px) {
+    .carousel-caption {
+      display: none;
+    }
+  }
+}

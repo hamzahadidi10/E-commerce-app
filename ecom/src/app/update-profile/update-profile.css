@@ -1,0 +1,124 @@
+.profile-update-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 5px 30px rgba(0,0,0,0.05);
+  font-family: 'Inter', sans-serif;
+}
+
+.profile-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #eee;
+  color: #2c3e50;
+}
+
+.profile-header h2 {
+  font-weight: 700;
+  font-size: 1.8rem;
+}
+
+.form-section {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: #f0f9f4; /* Light green background to match theme */
+  border-radius: 12px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  color: #27ae60; /* Primary green */
+  font-weight: 600;
+}
+
+.section-header h3 {
+  font-size: 1.3rem;
+  margin: 0;
+}
+
+.section-header i {
+  font-size: 1.5rem;
+  margin-right: 0.6rem;
+}
+
+.form-control {
+  border-radius: 12px;
+  padding: 12px 15px;
+  border: 1px solid #d1e7dd; /* softer green border */
+  background: white;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+.form-control:focus {
+  border-color: #27ae60;
+  box-shadow: 0 0 0 3px rgba(39, 174, 96, 0.15);
+  outline: none;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+  margin-top: 1rem;
+}
+
+.btn {
+  padding: 10px 25px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.btn-primary {
+  background-color: #27ae60;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #2ecc71;
+  box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
+  transform: translateY(-2px);
+}
+
+.btn-outline-secondary {
+  border: 2px solid #27ae60;
+  color: #27ae60;
+  background: transparent;
+}
+
+.btn-outline-secondary:hover {
+  background-color: #27ae60;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .profile-update-container {
+    padding: 1rem;
+    margin: 1rem;
+  }
+  
+  .row {
+    flex-direction: column;
+  }
+
+  .col-sm-3, .col-sm-9 {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  label {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #2c3e50;
+  }
+}
