@@ -34,10 +34,12 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest request) {
-        
         try {
             authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
+                new UsernamePasswordAuthenticationToken(
+                    request.getEmail(), 
+                    request.getPassword()
+                )
             );
 
             User user = userService.findUserByEmail(request.getEmail());
@@ -51,7 +53,7 @@ public class AuthController {
         } catch (BadCredentialsException e) {
             return ResponseEntity.status(401).body("Invalid credentials");
         } catch (AuthenticationException e) {
-            return ResponseEntity.status(500).body("Login error: " + e.getMessage());
+            return ResponseEntity.status(500).body("Internal server error");
         }
     }
 }

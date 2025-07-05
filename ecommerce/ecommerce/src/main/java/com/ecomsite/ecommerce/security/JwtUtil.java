@@ -1,5 +1,7 @@
 package com.ecomsite.ecommerce.security;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -22,6 +24,7 @@ import jakarta.annotation.PostConstruct;
 public class JwtUtil {
 
     private SecretKey secretKey;
+    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     @PostConstruct
     public void init() {
@@ -62,9 +65,13 @@ public class JwtUtil {
         claims.put("city", user.getCity());
         claims.put("role", user.getRole());
         claims.put("imageUrl", user.getImageUrl());
-        claims.put("date", user.getDate());
+        claims.put("date", formatLocalDateTime(user.getDate())); // Format the date as string
         claims.put("code", user.getCode());
         return createToken(claims, user.getEmail());
+    }
+
+    private String formatLocalDateTime(LocalDateTime dateTime) {
+        return dateTime != null ? dateTime.format(DATE_FORMATTER) : null;
     }
 
     private String createToken(Map<String, Object> claims, String subject) {
@@ -78,8 +85,18 @@ public class JwtUtil {
             .compact();
     }
 
+    public Boolean validateToken(String token) {
+        return !isTokenExpired(token);
+    }
+
     public Boolean validateToken(String token, UserDetails userDetails) {
         final String email = extractEmail(token);
         return (email.equals(userDetails.getUsername()) && !isTokenExpired(token));
+    }
+
+    // Helper method to parse date from token if needed
+    public LocalDateTime getDateFromToken(String token) {
+        String dateString = extractClaim(token, claims -> claims.get("date", String.class));
+        return dateString != null ? LocalDateTime.parse(dateString, DATE_FORMATTER) : null;
     }
 }
