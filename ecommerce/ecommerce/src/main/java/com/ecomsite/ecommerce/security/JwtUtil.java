@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 import java.util.function.Function;
 
 import javax.crypto.SecretKey;
@@ -16,7 +17,6 @@ import com.ecomsite.ecommerce.domain.User;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import jakarta.annotation.PostConstruct;
 
@@ -28,7 +28,7 @@ public class JwtUtil {
 
     @PostConstruct
     public void init() {
-        secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+        secretKey = Keys.hmacShaKeyFor("your-256-bit-secret-keep-this-safe-and-secure".getBytes());
     }
 
     public String extractEmail(String token) {
@@ -57,7 +57,9 @@ public class JwtUtil {
     }
 
     public String generateTokenWithClaims(User user) {
+        
         Map<String, Object> claims = new HashMap<>();
+        claims.put("jti", UUID.randomUUID().toString());
         claims.put("username", user.getUsername());
         claims.put("email", user.getEmail());
         claims.put("cin", user.getCin());

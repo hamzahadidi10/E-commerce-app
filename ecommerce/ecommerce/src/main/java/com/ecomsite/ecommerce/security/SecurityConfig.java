@@ -19,7 +19,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -39,6 +38,7 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                 .requestMatchers(HttpMethod.POST, "/user/add").permitAll()
                 .requestMatchers(HttpMethod.GET, "/product/all").permitAll()
+                .requestMatchers(HttpMethod.GET, "/product/find/**").permitAll()
                 .anyRequest().authenticated()
             )
             .sessionManagement(session -> session

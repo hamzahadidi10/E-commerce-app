@@ -8,23 +8,27 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(private authService: AuthService) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const token = this.authService.getToken();
+    // Skip adding token for these endpoints
+    const publicEndpoints = [
+      '/auth/login',
+      '/auth/register',
+      '/user/add',
+      '/product/all',
+      '/product/find'
+    ];
 
-    // Define public endpoints that do NOT require the JWT token
-    const isPublicRequest = req.url.includes('/auth/') ||  // login/register
-                            req.url.includes('/product/all') ||
-                            req.url.includes('/product/find') ||
-                            req.url.includes('/user/add');
-
-    // Attach token for all other requests (protected routes)
-    if (token && !isPublicRequest) {
-      const cloned = req.clone({
-        headers: req.headers.set('Authorization', `Bearer ${token}`)
-      });
-      return next.handle(cloned);
+    if (publicEndpoints.some(endpoint => req.url.includes(endpoint))) {
+      return next.handle(req);
     }
 
-    // For public requests, just forward the request without modification
+    const token = this.authService.getToken();
+    if (token) {
+      const authReq = req.clone({
+        headers: req.headers.set('Authorization', `Bearer ${token}`)
+      });
+      return next.handle(authReq);
+    }
+
     return next.handle(req);
   }
 }
